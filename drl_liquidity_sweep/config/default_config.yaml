@@ -1,0 +1,42 @@
+data:
+  cache_dir: ".cache"
+  resample_seconds: 1
+  symbols:
+    EURUSD: "data/EURUSD.csv"
+    GBPUSD: "data/GBPUSD.csv"
+
+env:
+  commission: 0.0001  # 1 pip per trade
+  lambda_penalty: 1.0
+  latency_jitter: [10, 50]  # ms
+  risk_unit_pct: 0.01
+  daily_loss_limit_pct: 0.02
+
+ppo:
+  learning_rate: 0.0003
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  clip_range_vf: null
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  use_sde: false
+  sde_sample_freq: -1
+  target_kl: null
+
+train:
+  train_start: "2024-01-01"
+  train_end: "2024-02-01"
+  val_start: "2024-02-01"
+  val_end: "2024-02-15"
+  test_start: "2024-02-15"
+  test_end: "2024-03-01"
+  n_envs: 8
+  total_timesteps: 1000000
+  checkpoint_freq: 10000
+  eval_freq: 10000
+  log_dir: "logs" 
